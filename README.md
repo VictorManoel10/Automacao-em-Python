@@ -1,2 +1,6 @@
 # Automacao-em-Python
- Mesclador automatico feito em python
+
+Pasta com projetos de Automação feitos em python
+
+
+#COTAÇÃO
