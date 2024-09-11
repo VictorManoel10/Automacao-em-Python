@@ -38,7 +38,7 @@ Funcionalidades:
 
 -Cria automaticamente as subpastas necessárias e move os arquivos para elas.
 
-## Extensões Suportadas(por enquanto):
+Extensões Suportadas(por enquanto):
 
 -Imagens e Vídeos: .png, .jpg, .mp4, .avi, .wmv
 
@@ -53,10 +53,14 @@ Funcionalidades:
 -Documentos e Textos: .docx, .txt
 
 
-# Renomeador de arquivos
+## Renomeador de arquivos
 Este script em Python permite que o usuário selecione uma pasta e renomeia todos os arquivos contidos nela, adicionando o nome do usuário ao início de cada arquivo. Ele usa a biblioteca os para manipulação de arquivos e tkinter.filedialog para permitir a seleção da pasta.
 
 Funcionalidades:
+
 -Solicita o nome do usuário para personalizar os nomes dos arquivos.
+
 -Permite a seleção de uma pasta através de uma janela gráfica.
+
 -Renomeia todos os arquivos da pasta, adicionando "Arquivos do(a) [nome do usuário]" ao início de cada nome de arquivo.
+
