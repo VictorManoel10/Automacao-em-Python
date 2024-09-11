@@ -13,15 +13,19 @@ Funcionalidades:
 -Exibe os valores atualizados em uma janela com interface gráfica.
 -Atualização das cotações ao clicar em um botão.
 
+
 ## Envio Automático de Emails 
 Este script em Python automatiza o envio de emails utilizando a biblioteca smtplib e email.mime. Ele se conecta a um servidor SMTP, faz login com as credenciais fornecidas e envia um email com conteúdo em HTML.
 
 Funcionalidades:
+
 -Criação e envio de um email automático com um corpo em formato HTML.
+
 -Configuração do servidor SMTP para enviar o email via Gmail.
+
 -Envio do email para o destinatário especificado.
-Atenção:
--Certifique-se de configurar as credenciais (email e senha) de maneira segura antes de utilizar o código.
+
+Atenção: Certifique-se de configurar as credenciais (email e senha) de maneira segura antes de utilizar o código.
 
 # Organizador de Arquivos em Pastas
 Este projeto é um organizador de arquivos simples em Python, que categoriza automaticamente os arquivos em uma pasta selecionada, movendo-os para subpastas de acordo com suas extensões. A interface gráfica é criada com Tkinter.
