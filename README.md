@@ -3,7 +3,7 @@
 Pasta com projetos de Automação feitos em python
 
 
-# App de Cotaç
+# App de Cotação
 Este projeto é uma aplicação simples em Python que exibe as cotações atuais do Dólar, Euro e Bitcoin em relação ao Real. Ele utiliza a API da AwesomeAPI para buscar as informações e exibe os valores em uma interface gráfica construída com Tkinter.
 
 Funcionalidades:
