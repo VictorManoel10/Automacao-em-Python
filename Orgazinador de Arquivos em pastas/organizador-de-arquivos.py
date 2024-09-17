@@ -11,16 +11,20 @@ def orgArq():
     lista_arquivos = os.listdir(caminho)
 
     locais = {
-        "Imagens e Videos": [".png", ".jpg", ".mp4", ".avi", ".wmv"],
+        "Imagens e Videos": [".png", ".jpg", ".mp4", ".avi", ".wmv", ".gif", ".jpeg", ".ico"],
         "Musicas": [".mp3", ".wav"],
         "planilhas": [".xlsx"],
         "Pdfs": [".pdf"],
-        "Winrar": [".rar"],
-        "Arquivos de Texto": [".docx", ".txt",]
+        "Winrar": [".rar", ".zip", ".7z"],
+        "Arquivos de Texto": [".docx", ".txt"],
+        "Instaladores": [".exe", ".msi", ".dmg"],
+        "Torrents": [".torrent"]
     }
 
     for arquivo in lista_arquivos:
         nome, extensao = os.path.splitext(f"{caminho}/{arquivo}")
+        extensao = extensao.lower()
+        
         for pasta in locais:
             if extensao in locais[pasta]:
                 if not os.path.exists(f"{caminho}/{pasta}"):
@@ -28,6 +32,7 @@ def orgArq():
                 os.rename(f"{caminho}/{arquivo}", f"{caminho}/{pasta}/{arquivo}")
 
     txt_end.grid(column=0, row=2, padx=10, pady=10)
+
 
 
 janela = Tk()
