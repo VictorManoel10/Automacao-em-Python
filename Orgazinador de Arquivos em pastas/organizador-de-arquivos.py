@@ -11,14 +11,19 @@ def orgArq():
     lista_arquivos = os.listdir(caminho)
 
     locais = {
-        "Imagens e Videos": [".png", ".jpg", ".mp4", ".avi", ".wmv", ".gif", ".jpeg", ".ico"],
-        "Musicas": [".mp3", ".wav"],
-        "planilhas": [".xlsx"],
+        "Imagens e Videos": [".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tiff", ".webp", ".svg",
+            ".mp4", ".avi", ".mov", ".wmv", ".mkv", ".flv", ".mpg", ".mpeg", ".3gp", "ico", ".avif"],
+        "Musicas": [".mp3", ".wav", ".aac", ".flac", ".ogg", ".m4a", ".wma", ".aiff", ".aif",
+        ".alac", ".opus", ".amr", ".mid", ".midi"],
+        "planilhas": [".xlsx", ".xls", ".csv"],
         "Pdfs": [".pdf"],
-        "Winrar": [".rar", ".zip", ".7z"],
-        "Arquivos de Texto": [".docx", ".txt"],
-        "Instaladores": [".exe", ".msi", ".dmg"],
-        "Torrents": [".torrent"]
+        "Winrar": [".rar", ".zip", ".7z", ".tar", ".gz"],
+        "Arquivos de Texto": [".docx", ".txt", ".doc", ".rtf"],
+        "Instaladores e Programas": [".exe", ".msi", ".bat", ".app", ".apk", ".dmg", ".pkg", ".jar", ".run", ".sh"],
+        "Torrents": [".torrent"],
+        "Photoshop": [".psd"],
+        "Arquivos de Código": [".py", ".js", ".html", ".css", ".json", ".xml", ".java", ".c", ".cpp", ".h",
+        ".php", ".rb", ".swift", ".go", ".ts", ".r", ".sql", ".sh"]
     }
 
     for arquivo in lista_arquivos:
