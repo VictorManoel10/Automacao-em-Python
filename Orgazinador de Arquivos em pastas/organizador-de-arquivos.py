@@ -36,7 +36,8 @@ def orgArq():
 
 
 janela = Tk()
-janela.title("Organizador de arquivos")
+janela.title("Organizador de arquivos 1.0.1")
+
 
 txt_main = Label(janela, text="Vamos organizar seus arquivos em pastas!")
 txt_main.grid(column=0, row=0, padx=10, pady=10)
