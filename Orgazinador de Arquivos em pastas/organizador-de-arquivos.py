@@ -2,6 +2,20 @@ import os
 from tkinter.filedialog import askdirectory
 from tkinter import *
 
+
+def centralizar_janela(janela, largura, altura):
+    # Obtém as dimensões da tela
+    tela_largura = janela.winfo_screenwidth()
+    tela_altura = janela.winfo_screenheight()
+    
+    # Calcula as coordenadas x e y para a centralização
+    x = (tela_largura - largura) // 2
+    y = (tela_altura - altura) // 2
+
+    # Define a geometria da janela
+    janela.geometry(f"{largura}x{altura}+{x}+{y}")
+
+
 def orgArq():
     caminho = askdirectory(title="Selecione uma pasta")
 
@@ -43,6 +57,13 @@ def orgArq():
 janela = Tk()
 janela.title("FolderFix 1.0.2")
 janela.iconbitmap(r"C:\Users\lordz\Documents\Projetos de automação python\Automacao-em-Python\Orgazinador de Arquivos em pastas\folder.ico")
+
+# Define as dimensões da janela
+largura_janela = 350
+altura_janela = 165
+
+# Centraliza a janela
+centralizar_janela(janela, largura_janela, altura_janela)
 
 name_app = Label(janela, text="FolderFix", font=("Impact", 20), fg="black")
 name_app.grid(column=0, row=0)
