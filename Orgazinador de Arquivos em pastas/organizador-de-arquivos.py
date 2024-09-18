@@ -12,7 +12,7 @@ def orgArq():
 
     locais = {
         "Imagens e Videos": [".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tiff", ".webp", ".svg",
-            ".mp4", ".avi", ".mov", ".wmv", ".mkv", ".flv", ".mpg", ".mpeg", ".3gp", "ico", ".avif"],
+        ".mp4", ".avi", ".mov", ".wmv", ".mkv", ".flv", ".mpg", ".mpeg", ".3gp", "ico", ".avif"],
         "Musicas": [".mp3", ".wav", ".aac", ".flac", ".ogg", ".m4a", ".wma", ".aiff", ".aif",
         ".alac", ".opus", ".amr", ".mid", ".midi"],
         "planilhas": [".xlsx", ".xls", ".csv"],
@@ -36,21 +36,23 @@ def orgArq():
                     os.mkdir(f"{caminho}/{pasta}")
                 os.rename(f"{caminho}/{arquivo}", f"{caminho}/{pasta}/{arquivo}")
 
-    txt_end.grid(column=0, row=2, padx=10, pady=10)
+    txt_end.grid(column=0, row=3, padx=10, pady=10)
 
 
 
 janela = Tk()
-janela.title("Organizador de arquivos 1.0.1")
+janela.title("FolderFix 1.0.2")
 
+name_app = Label(janela, text="FolderFix", font=("Impact", 20), fg="black")
+name_app.grid(column=0, row=0)
 
-txt_main = Label(janela, text="Vamos organizar seus arquivos em pastas!")
-txt_main.grid(column=0, row=0, padx=10, pady=10)
+txt_main = Label(janela, text="Vamos organizar seus arquivos em pastas!", font=("Arial", 13))
+txt_main.grid(column=0, row=1, padx=10)
 
-botao = Button(janela, text="Procurar pasta", command=orgArq)
-botao.grid(column=0, row=1, padx=10, pady=10)
+botao = Button(janela, text="Escolha uma pasta...", font=("Arial", 12, "bold"), bg="#EAC40B", fg="white" ,relief="flat", bd='3', command=orgArq)
+botao.grid(column=0, row=2, padx=10, pady=10)
 
-txt_end = Label(janela, text="Seus arquivos agora estão organizados!")
+txt_end = Label(janela, text="Seus arquivos agora estão organizados!", font=("Arial", 13, "bold"), bg="#23CF5C", fg="white")
 txt_end.grid_forget()
 
  
