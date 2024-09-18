@@ -42,6 +42,7 @@ def orgArq():
 
 janela = Tk()
 janela.title("FolderFix 1.0.2")
+janela.iconbitmap(r"C:\Users\lordz\Documents\Projetos de automação python\Automacao-em-Python\Orgazinador de Arquivos em pastas\folder.ico")
 
 name_app = Label(janela, text="FolderFix", font=("Impact", 20), fg="black")
 name_app.grid(column=0, row=0)
