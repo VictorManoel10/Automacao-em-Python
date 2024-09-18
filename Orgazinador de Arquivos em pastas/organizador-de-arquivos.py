@@ -20,6 +20,8 @@ def orgArq():
     caminho = askdirectory(title="Selecione uma pasta")
 
     if not caminho:  # Caso o usuário cancele a seleção da pasta
+        txt_end.config(text="Você não selecionou nenhuma pasta!", bg="#CF2323")  # Atualiza a mensagem e a cor de fundo
+        txt_end.grid(column=0, row=3, padx=10, pady=10)
         return
 
     lista_arquivos = os.listdir(caminho)
@@ -50,12 +52,13 @@ def orgArq():
                     os.mkdir(f"{caminho}/{pasta}")
                 os.rename(f"{caminho}/{arquivo}", f"{caminho}/{pasta}/{arquivo}")
 
+    txt_end.config(text="Seus arquivos agora estão organizados!", bg="#23CF5C")  # Atualiza a mensagem e a cor de fundo
     txt_end.grid(column=0, row=3, padx=10, pady=10)
 
 
 
 janela = Tk()
-janela.title("FolderFix 1.0.2")
+janela.title("FolderFix 1.0.3")
 janela.iconbitmap(r"C:\Users\lordz\Documents\Projetos de automação python\Automacao-em-Python\Orgazinador de Arquivos em pastas\folder.ico")
 
 # Define as dimensões da janela
@@ -64,6 +67,9 @@ altura_janela = 165
 
 # Centraliza a janela
 centralizar_janela(janela, largura_janela, altura_janela)
+
+# Impede o redimensionamento da janela
+janela.resizable(False, False)
 
 name_app = Label(janela, text="FolderFix", font=("Impact", 20), fg="black")
 name_app.grid(column=0, row=0)
