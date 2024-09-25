@@ -71,7 +71,6 @@ def orgArq():
 
 janela = Tk()
 janela.title("FolderFix 1.0.5")
-janela.iconbitmap(r"C:\Users\lordz\Documents\Projetos de automação python\Automacao-em-Python\Orgazinador de Arquivos em pastas\folder.ico")
 
 largura_janela = 350
 altura_janela = 200
