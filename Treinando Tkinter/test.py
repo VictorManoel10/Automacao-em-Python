@@ -1,4 +1,7 @@
 import os
+import zipfile
+import threading
+from tkinter import messagebox, ttk
 from tkinter.filedialog import askdirectory
 from tkinter import *
 
@@ -16,6 +19,50 @@ def renomear_arquivo(destino_arquivo):
         destino_arquivo = f"{base}_{contador}{extensao}"
         contador += 1
     return destino_arquivo
+
+def zipar_pastas(caminho, progresso_bar):
+    pasta_nome = os.path.basename(caminho)
+    zip_destino = os.path.join(caminho, f"{pasta_nome}_organizado.zip")
+
+    # Se o arquivo .zip já existir, remove-o para evitar duplicação
+    if os.path.exists(zip_destino):
+        os.remove(zip_destino)
+
+    # Obter todas as pastas criadas
+    pastas = [os.path.join(caminho, d) for d in os.listdir(caminho) if os.path.isdir(os.path.join(caminho, d))]
+
+    # Contar o número total de arquivos
+    total_itens = sum([len(files) for r, d, files in os.walk(caminho)])
+    progresso_bar["maximum"] = total_itens
+
+    progresso = 0
+    # Criar o arquivo zip
+    with zipfile.ZipFile(zip_destino, 'w') as arq_zip:
+        # Itera pelas pastas e arquivos
+        for pasta in pastas:
+            for root, dirs, files in os.walk(pasta):
+                for arquivo in files:
+                    caminho_arquivo = os.path.join(root, arquivo)
+                    arq_zip.write(caminho_arquivo, os.path.relpath(caminho_arquivo, caminho))
+                    
+                    # Atualizar o progresso a cada 10 arquivos para não sobrecarregar
+                    progresso += 1
+                    if progresso % 10 == 0:
+                        progresso_bar["value"] = progresso
+                        progresso_bar.update_idletasks()
+
+    # Atualiza a barra de progresso para o final
+    progresso_bar["value"] = total_itens
+    progresso_bar.update_idletasks()
+
+    # Exibir mensagem de sucesso
+    messagebox.showinfo("FolderFix", f"As pastas foram compactadas em {zip_destino} com sucesso!")
+
+def zipar_pastas_thread(caminho, progresso_bar):
+    # Executa o processo de compactação em uma nova thread
+    progresso_bar.grid(column=0, row=4, padx=10, pady=10)  # Exibe a barra de progresso
+    thread = threading.Thread(target=zipar_pastas, args=(caminho, progresso_bar))
+    thread.start()
 
 def orgArq():
     caminho = askdirectory(title="Selecione uma pasta")
@@ -40,7 +87,11 @@ def orgArq():
         "Torrents": [".torrent"],
         "Photoshop": [".psd"],
         "Arquivos de Código": [".py", ".js", ".html", ".css", ".json", ".xml", ".java", ".c", ".cpp", ".h",
-        ".php", ".rb", ".swift", ".go", ".ts", ".r", ".sql", ".sh"]
+        ".php", ".rb", ".swift", ".go", ".ts", ".r", ".sql", ".sh"],
+        "Apresentações": [".ppt", ".pptx", ".key", ".odp"],
+        "Fontes": [".ttf", ".otf", ".woff", ".woff2", ".eot"],
+        "Imagens 3D": [".obj", ".stl", ".fbx", ".gltf", ".3ds", ".dae"],
+        "Projetos CAD": [".dwg", ".dxf", ".step", ".stp", ".iges", ".igs"]
     }
 
     for arquivo in lista_arquivos:
@@ -69,12 +120,17 @@ def orgArq():
     txt_end.config(text=f"Sua pasta {pasta_nome} agora está organizada!", font=("Arial", 11), bg="#23CF5C")
     txt_end.grid(column=0, row=3, padx=10, pady=10)
 
+    # Pergunta se o usuário quer zipar as pastas criadas
+    resposta = messagebox.askyesno("FolderFix", "Você quer compactar as pastas criadas?")
+    if resposta:
+        progresso_bar.grid_forget()  # Oculta a barra de progresso até que o usuário escolha zipar
+        zipar_pastas_thread(caminho, progresso_bar)
+
 janela = Tk()
-janela.title("FolderFix 1.0.4")
-janela.iconbitmap(r"C:\Users\lordz\Documents\Projetos de automação python\Automacao-em-Python\Orgazinador de Arquivos em pastas\folder.ico")
+janela.title("FolderFix 1.0.6")
 
 largura_janela = 350
-altura_janela = 200
+altura_janela = 225
 centralizar_janela(janela, largura_janela, altura_janela)
 janela.resizable(False, False)
 
@@ -89,5 +145,9 @@ botao.grid(column=0, row=2, padx=10, pady=10)
 
 txt_end = Label(janela, text="Seus arquivos agora estão organizados!", font=("Arial", 13, "bold"), bg="#23CF5C", fg="white")
 txt_end.grid_forget()
+
+# Barra de progresso
+progresso_bar = ttk.Progressbar(janela, orient="horizontal", length=250, mode="determinate")
+progresso_bar.grid_forget()  # Inicialmente oculta a barra de progresso
 
 janela.mainloop()
